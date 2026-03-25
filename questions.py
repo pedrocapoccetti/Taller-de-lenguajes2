@@ -4,12 +4,13 @@ words = ["python", "programa", "variable", "funcion", "bucle"]
 word = random.choice(words)
 guessed = []
 attempts = 6
+puntos = 100  # <--- Agregado
 
 while attempts > 0:
     progress = "".join([l + " " if l in guessed else "_ " for l in word])
-    print(progress)
+    print(f"\n{progress} | Puntos: {puntos}") # <--- Mostrar puntos
     if "_" not in progress:
-        print("¡Ganaste!")
+        print(f"¡Ganaste! Puntaje final: {puntos}")
         break
     
     letter = input("Ingresá una letra: ").lower()
@@ -17,4 +18,5 @@ while attempts > 0:
         guessed.append(letter)
     else:
         attempts -= 1
-        print(f"Incorrecto. Te quedan {attempts} intentos.")
+        puntos -= 10 # <--- Restar puntos
+        print(f"Incorrecto. Puntos actuales: {puntos}")
