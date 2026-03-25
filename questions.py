@@ -1,25 +1,33 @@
 import random
 
-words = [
-    "python",
-    "programa",
-    "variable",
-    "funcion",
-    "bucle",
-    "cadena",
-    "entero",
-    "lista",
-]
+categorias = {
+    "programacion": ["python", "variable", "funcion", "bucle"],
+    "animales": ["perro", "gato", "elefante", "jirafa"],
+    "comida": ["pizza", "pasta", "asado", "empanada"]
+}
+
+print("¡Bienvenido al Ahorcado!")
+print()
+
+# Mostrar categorías
+print("Categorías disponibles:")
+for categoria in categorias:
+    print("-", categoria)
+
+# Elegir categoría
+categoria_elegida = input("Elegí una categoría: ").lower()
+
+while categoria_elegida not in categorias:
+    print("Categoría inválida")
+    categoria_elegida = input("Elegí una categoría: ").lower()
+
+words = categorias[categoria_elegida]
 
 word = random.choice(words)
 guessed = []
 attempts = 6
 
-print("¡Bienvenido al Ahorcado!")
-print()
-
 while attempts > 0:
-    # Mostrar progreso: letras adivinadas y guiones para las que faltan
     progress = ""
     for letter in word:
         if letter in guessed:
@@ -28,7 +36,6 @@ while attempts > 0:
             progress += "_ "
     print(progress)
 
-    # Verificar si el jugador ya adivinó la palabra completa
     if "_" not in progress:
         print("¡Ganaste!")
         break
@@ -38,7 +45,7 @@ while attempts > 0:
 
     letter = input("Ingresá una letra: ").lower()
 
-    # ✅ VALIDACIÓN NUEVA
+    # Validación
     if len(letter) != 1 or not letter.isalpha():
         print("Entrada no válida")
         print()
