@@ -28,10 +28,9 @@ def actualizar_tabla(tabla, resultados, ganador):
     return tabla
 
 def generar_tabla_final(tabla):
-    # Convertimos el diccionario en lista de filas
     filas = list(tabla.values())
     
-    # Ordenamos primero por total de puntos y luego por rondas ganadas
+   
     filas_ordenadas = sorted(
         filas,
         key=lambda fila: (fila["total"], fila["rondas_ganadas"]),
